@@ -2,12 +2,22 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Serve static files (HTML, CSS, images, videos) from the root directory
+const rootDir = path.join(__dirname, '..');
+app.use(express.static(rootDir));
+
+// Serve index.html on root GET /
+app.get('/', (req, res) => {
+  res.sendFile(path.join(rootDir, 'index.html'));
+});
 
 // MongoDB connection caching for Serverless
 let cachedPromise = null;
@@ -155,6 +165,15 @@ app.post(['/submit-travel-booking', '/api/submit-travel-booking'], async (req, r
     console.error('Error processing travel booking:', error);
     res.status(500).send('Error processing travel booking: ' + error.message);
   }
+});
+
+// Catch-all route for any unhandled GET requests to serve HTML files if matching, or index.html
+app.get('*', (req, res) => {
+  const reqPath = req.path;
+  if (reqPath.endsWith('.html')) {
+    return res.sendFile(path.join(rootDir, reqPath));
+  }
+  res.sendFile(path.join(rootDir, 'index.html'));
 });
 
 // Fallback listener for local execution
