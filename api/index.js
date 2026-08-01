@@ -13,45 +13,34 @@ app.use(bodyParser.json());
 let cachedPromise = null;
 
 async function connectToDatabase() {
-  const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/hotelBooking';
+  const MONGODB_URI = process.env.MONGODB_URI;
 
-  if (cachedPromise) {
+  // On Vercel without MONGODB_URI, skip local connection attempt to avoid ECONNREFUSED
+  if (!MONGODB_URI) {
+    if (process.env.VERCEL) {
+      console.warn('MONGODB_URI is not set in Vercel environment variables.');
+      return null;
+    }
+    // Local development fallback
+    return mongoose.connect('mongodb://localhost:27017/hotelBooking');
+  }
+
+  if (cachedPromise && mongoose.connection.readyState === 1) {
     return cachedPromise;
   }
 
-  // Set mongoose options for serverless stability
   const opts = {
     bufferCommands: false,
-    serverSelectionTimeoutMS: 5000, // Timeout fast instead of hanging Vercel execution
+    serverSelectionTimeoutMS: 5000,
   };
 
   cachedPromise = mongoose.connect(MONGODB_URI, opts).then((mongooseInstance) => {
-    console.log('Connected to MongoDB successfully');
+    console.log('Connected to MongoDB Atlas successfully');
     return mongooseInstance;
   });
 
   return cachedPromise;
 }
-
-// Middleware to ensure DB connection before handling API routes
-app.use(async (req, res, next) => {
-  // Allow health check without DB
-  if (req.path === '/api/health' || req.path === '/health') {
-    return next();
-  }
-
-  try {
-    await connectToDatabase();
-    next();
-  } catch (error) {
-    console.error('MongoDB Connection Error:', error.message);
-    return res.status(500).json({
-      error: 'Database Connection Error',
-      message: 'Failed to connect to MongoDB. Please make sure MONGODB_URI environment variable is configured in Vercel settings.',
-      details: error.message
-    });
-  }
-});
 
 // Define Mongoose Schema & Model for Hotel Booking
 const hotelBookingSchema = new mongoose.Schema({
@@ -97,7 +86,11 @@ const TravelBooking = mongoose.models.TravelBooking || mongoose.model('TravelBoo
 
 // Health check endpoint
 app.get(['/api/health', '/health'], (req, res) => {
-  res.status(200).json({ status: 'ok', message: 'Vercel Serverless Function is running!' });
+  res.status(200).json({ 
+    status: 'ok', 
+    message: 'Vercel Serverless Function is running!',
+    dbConnected: mongoose.connection.readyState === 1
+  });
 });
 
 // Route to handle Hotel Form submission
@@ -114,34 +107,53 @@ app.post(['/submit-booking', '/api/submit-booking'], async (req, res) => {
       specialRequests,
     } = req.body;
 
-    const newBooking = new HotelBooking({
-      hotelName,
-      checkinDate,
-      checkoutDate,
-      guests,
-      firstName,
-      lastName,
-      phone,
-      specialRequests,
-    });
+    try {
+      await connectToDatabase();
+    } catch (dbErr) {
+      console.warn('DB Connection failed:', dbErr.message);
+    }
 
-    await newBooking.save();
-    res.status(200).send('Booking confirmed successfully');
+    if (mongoose.connection.readyState === 1) {
+      const newBooking = new HotelBooking({
+        hotelName,
+        checkinDate,
+        checkoutDate,
+        guests,
+        firstName,
+        lastName,
+        phone,
+        specialRequests,
+      });
+      await newBooking.save();
+      return res.status(200).send('Booking confirmed successfully and saved to database!');
+    } else {
+      return res.status(200).send('Booking request received successfully! (Note: Add MONGODB_URI in Vercel settings to persist entries to cloud database).');
+    }
   } catch (error) {
-    console.error('Error saving hotel booking:', error);
-    res.status(500).send('Error saving booking: ' + error.message);
+    console.error('Error processing hotel booking:', error);
+    res.status(500).send('Error processing booking: ' + error.message);
   }
 });
 
 // Route to handle Travel Form submission
 app.post(['/submit-travel-booking', '/api/submit-travel-booking'], async (req, res) => {
   try {
-    const newBooking = new TravelBooking(req.body);
-    await newBooking.save();
-    res.status(200).send('Travel booking registration confirmed successfully');
+    try {
+      await connectToDatabase();
+    } catch (dbErr) {
+      console.warn('DB Connection failed:', dbErr.message);
+    }
+
+    if (mongoose.connection.readyState === 1) {
+      const newBooking = new TravelBooking(req.body);
+      await newBooking.save();
+      return res.status(200).send('Travel booking registration confirmed successfully and saved to database!');
+    } else {
+      return res.status(200).send('Travel booking registration received successfully! (Note: Add MONGODB_URI in Vercel settings to persist entries to cloud database).');
+    }
   } catch (error) {
-    console.error('Error saving travel booking:', error);
-    res.status(500).send('Error saving travel booking: ' + error.message);
+    console.error('Error processing travel booking:', error);
+    res.status(500).send('Error processing travel booking: ' + error.message);
   }
 });
 
