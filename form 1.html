@@ -1,0 +1,429 @@
+<html>
+<head>
+  <title>Registration Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    .error {
+      color: red;
+      font-size: 0.875em;
+    }
+
+
+ body {
+      background-image: url('form-back1.jpg'); 
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh; 
+      opacity: 0.9;
+      background-attachment: fixed;
+    }
+
+  </style>
+</head>
+<body>
+  <h1 class="text-center text-danger">TRAVEL BOOKING FORM</h1>
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <div class="card shadow">
+          <div class="card-header text-center p-3">    
+            <h4>Registration Form</h4>  
+          </div>      
+          <div class="card-body p-4">
+            <form id="registrationForm" onsubmit="return validateForm()">
+
+              <div class="form-group mb-3">
+                <label for="name" class="  mb-2">Name*</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                <div id="nameError" class="error"></div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="email">E-mail*</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="e-mail">
+                <div id="emailError" class="error"></div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6  mb-3">
+                  <label for="phone1">Phone 1*</label>
+                  <div class="input-group ">
+                    <div class="input-group-prepend ">
+                      <span class="input-group-text ">+91</span>
+                    </div>
+                    <input type="text" class="form-control" id="phone1" name="phone1">
+                  </div>
+                  <div id="phone1Error" class="error"></div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="phone2">Phone 2</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">+91</span>
+                    </div>
+                    <input type="text" class="form-control" id="phone2" name="phone2">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="whatsapp">WhatsApp*</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">+91</span>
+                  </div>
+                  <input type="text" class="form-control" id="whatsapp" name="whatsapp">
+                  <div id="whatsappError" class="error"></div>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="address">Address*</label>
+                <textarea class="form-control" rows="2" id="address" name="address" placeholder="Enter Your Address"></textarea>
+                <div id="addressError" class="error"></div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                  <label for="from">From*</label>
+                  <select class="form-control" id="from" name="from">
+                    <option>Choose</option>
+                    <option>Tamilnadu</option>
+                    <option>Kerala</option>
+                  </select>
+                  <div id="fromError" class="error"></div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="to">To*</label>
+                  <select class="form-control" id="to" name="to">
+                    <option>India</option>
+                  </select>
+                  <div id="toError" class="error"></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                  <label for="adults">Adults*</label>
+                  <input type="number" class="form-control" id="adults" name="adults" placeholder="00">
+                  <div id="adultsError" class="error"></div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="childrens">Childrens*</label>
+                  <input type="number" class="form-control" id="childrens" name="childrens" placeholder="00">
+                  <div id="childrensError" class="error"></div>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="travelClass">Travel Class*</label>
+                <select class="form-control" id="travelClass" name="travelClass">
+                  <option>Choose</option>
+                  <option>First class</option>
+                  <option>Second class</option>
+                  <option>Third class</option>
+                </select>
+                <div id="travelClassError" class="error"></div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                  <label for="departure">Departure On*</label>
+                  <input type="text" class="form-control" id="departure" name="departure" placeholder="dd/mm/yyyy">
+                  <div id="departureError" class="error"></div>
+                </div>
+                <div class="form-group col-md-6 mb-3">
+                  <label for="journeyType">Journey Type*</label>
+                  <select class="form-control" id="journeyType" name="journeyType">
+                    <option>Choose</option>
+                    <option>One Way</option>
+                    <option>Round Trip</option>
+                  </select>
+                  <div id="journeyTypeError" class="error"></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                  <label>Preferred*</label>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" id="hotel" name="preferred" value="Hotel">
+                    <label class="form-check-label" for="hotel">Hotel</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" id="resort" name="preferred" value="Resort">
+                    <label class="form-check-label" for="resort">Resort</label>
+                  </div>
+                  <div id="preferredError" class="error"></div>
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                  <label>Food Type*</label>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="veg" name="foodType" value="Veg">
+                    <label class="form-check-label" for="veg">Veg</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="nonVeg" name="foodType" value="Non-Veg">
+                    <label class="form-check-label" for="nonVeg">Non-Veg</label>
+                  </div>
+                  <div id="foodTypeError" class="error"></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-md-6 mb-3">
+                  <label for="numRooms">Number Of Rooms*</label>
+                  <input type="number" class="form-control" id="numRooms" name="numRooms" placeholder="00">
+                  <div id="numRoomsError" class="error"></div>
+                </div>
+
+                <div class="form-group col-md-6 mb-3">
+                  <label>Room Preference*</label>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" id="standard" name="roomPreference" value="Standard">
+                    <label class="form-check-label" for="standard">Standard</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" id="deluxe" name="roomPreference" value="Deluxe">
+                    <label class="form-check-label" for="deluxe">Deluxe</label>
+                  </div>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" id="suite" name="roomPreference" value="Suite">
+                    <label class="form-check-label" for="suite">Suite</label>
+                  </div>
+                  <div id="roomPreferenceError" class="error"></div>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label>Select Your Entertainment*</label>
+                <select multiple class="form-control" id="entertainment" name="entertainment">
+                  <option>Trucking</option>
+                  <option>Visiting</option>
+                  <option>Indoor Games</option>
+                  <option>Outdoor Games</option>
+                  <option>Swimming</option>
+                  <option>Campfire</option>
+                  <option>Night Party</option>
+                  <option>No Thanks</option>
+                </select>
+                <div id="entertainmentError" class="error"></div>
+              </div>
+	       
+              <div class="row"> 
+              <div class="form-group mb-3">
+                <label>Passport Copy*</label>
+                <input type="file" class="form-control-file" id="passportCopy" name="passportCopy">
+                <div id="passportCopyError" class="error"></div>
+              </div>
+	          <div class="form-switch form-check col-4 px-5 mb-3">
+                             <label class="form-label" for="switch">Location</label>
+                            <input class="form-check-input" type="checkbox" role="switch" id="switch">
+                            
+                     </div>
+              </div>
+	      
+              <div class="form-group mb-3">
+                <label  for="university">Convey The Message To Us</label>
+                <input type="text" class="form-control" id="university" placeholder="information">
+                <div id="universityError" class="error"></div>
+              </div>
+
+              <div class="form-group p-2 mb-3">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="termsCheckbox">
+                  <label class="custom-control-label" for="termsCheckbox">I accept the terms and conditions</label>
+                  <div id="termsCheckboxError" class="error"></div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
+      crossorigin="anonymous"></script>
+
+
+  <script>
+    function validateForm() {
+      let valid = true;
+
+      //errors
+      document.querySelectorAll('.error').forEach(error => error.innerText = '');
+
+      // Name
+      const name = document.getElementById('name').value.trim();
+      const alphaPattern = /^[A-Za-z]+$/;
+      if (!name) {
+        document.getElementById('nameError').innerText = 'Name is required';
+        valid = false;
+      }else if (!alphaPattern.test(name)) {
+                document.getElementById('nameError').innerText = 'Name must contain only alphabets';
+                valid = false;
+            }
+
+      // Email
+      const email = document.getElementById('email').value.trim();
+      if (!email) {
+        document.getElementById('emailError').innerText = 'Email is required';
+        valid = false;
+      } else if (!isValidEmail(email)) {
+        document.getElementById('emailError').innerText = 'Enter a valid email address';
+        valid = false;
+      }
+
+      // Phone 1
+      const phone1 = document.getElementById('phone1').value.trim();
+      if (!phone1) {
+        document.getElementById('phone1Error').innerText = 'Phone 1 is required';
+        valid = false;
+      } else if (!isValidPhone(phone1)) {
+        document.getElementById('phone1Error').innerText = 'Enter a valid phone number';
+        valid = false;
+      }
+
+      // WhatsApp
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      if (!whatsapp) {
+        document.getElementById('whatsappError').innerText = 'WhatsApp number is required';
+        valid = false;
+      } else if (!isValidPhone(whatsapp)) {
+        document.getElementById('whatsappError').innerText = 'Enter a valid WhatsApp number';
+        valid = false;
+      }
+
+      // address
+      const address = document.getElementById('address').value.trim();
+      if (!address) {
+        document.getElementById('addressError').innerText = 'Address is required';
+        valid = false;
+      }
+
+      // From
+      const from = document.getElementById('from').value;
+      if (from === 'Choose') {
+        document.getElementById('fromError').innerText = 'Select a departure location';
+        valid = false;
+      }
+
+      // To
+      const to = document.getElementById('to').value;
+      if (to === 'Choose') {
+        document.getElementById('toError').innerText = 'Select a destination location';
+        valid = false;
+      }
+
+      // Adults
+      const adults = document.getElementById('adults').value.trim();
+      if (!adults) {
+        document.getElementById('adultsError').innerText = 'Number of adults is required';
+        valid = false;
+      }
+
+      // Childrens
+      const childrens = document.getElementById('childrens').value.trim();
+      if (!childrens) {
+        document.getElementById('childrensError').innerText = 'Number of children is required';
+        valid = false;
+      }
+
+      // Travel Class
+      const travelClass = document.getElementById('travelClass').value;
+      if (travelClass === 'Choose') {
+        document.getElementById('travelClassError').innerText = 'Select a travel class';
+        valid = false;
+      }
+
+      // Departure On
+      const departure = document.getElementById('departure').value.trim();
+      if (!departure) {
+        document.getElementById('departureError').innerText = 'Departure date is required';
+        valid = false;
+      }
+
+      // Journey Type
+      const journeyType = document.getElementById('journeyType').value;
+      if (journeyType === 'Choose') {
+        document.getElementById('journeyTypeError').innerText = 'Select a journey type';
+        valid = false;
+      }
+
+      // Preferred
+      const preferred = document.querySelector('input[name="preferred"]:checked');
+      if (!preferred) {
+        document.getElementById('preferredError').innerText = 'Select a preferred option';
+        valid = false;
+      }
+
+      // Food Type
+      const foodTypeChecked = document.querySelectorAll('input[name="foodType"]:checked');
+      if (foodTypeChecked.length === 0) {
+        document.getElementById('foodTypeError').innerText = 'Select at least one food type';
+        valid = false;
+      }
+
+      // Number Of Rooms
+      const numRooms = document.getElementById('numRooms').value.trim();
+      if (!numRooms) {
+        document.getElementById('numRoomsError').innerText = 'Number of rooms is required';
+        valid = false;
+      }
+
+      // Room Preference
+      const roomPreference = document.querySelector('input[name="roomPreference"]:checked');
+      if (!roomPreference) {
+        document.getElementById('roomPreferenceError').innerText = 'Select a room preference';
+        valid = false;
+      }
+
+      // Entertainment
+      const entertainment = document.getElementById('entertainment').value;
+      if (entertainment.length === 0) {
+        document.getElementById('entertainmentError').innerText = 'Select at least one entertainment option';
+        valid = false;
+      }
+
+      // Passport Copy
+      const passportCopy = document.getElementById('passportCopy').value.trim();
+      if (!passportCopy) {
+        document.getElementById('passportCopyError').innerText = 'Upload a passport copy';
+        valid = false;
+      }
+
+      // request message
+      const university = document.getElementById('university').value.trim();
+      if (!university) {
+        document.getElementById('universityError').innerText = 'University/Institution is required';
+        valid = false;
+      }
+
+      // Checkbox
+      const termsCheckbox = document.getElementById('termsCheckbox').checked;
+      if (!termsCheckbox) {
+        document.getElementById('termsCheckboxError').innerText = 'Please accept the terms and conditions';
+        valid = false;
+      }
+
+      return valid;
+    }
+
+    function isValidEmail(email) {
+      // email validation 
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function isValidPhone(phone) {
+      // phone number validation
+      const phoneRegex = /^[0-9]{10}$/;
+      return phoneRegex.test(phone);
+    }
+  </script>
+</body>
+</html>

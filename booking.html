@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-heading-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 80px 0; 
+      padding: 20px;
+      border: 2px solid #fff; 
+      border-radius: 10px; 
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.7); 
+      background-color: rgba(255, 255, 255, 0.1); 
+    }
+
+    .page-heading {
+      color: #fff;
+      font-size: 2.5rem;
+      margin-left: 20px; 
+    }
+
+    .special-offers {
+      background-color: #000; 
+      min-height: 100vh; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 50px; 
+    }
+
+    .offer-box {
+      background: #fff; 
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 40px;
+    }
+
+    .offer-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(248, 247, 247, 0.634);
+    }
+
+    .offer-box h3 {
+      color: #000; 
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .offer-box a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .offer-box a:hover {
+      color: #666;
+    }
+
+    .logo {
+      width: 100px; 
+      height: auto;
+    }
+
+    
+    .border-container {
+      padding: 20px;
+      border: 2px solid #fff; 
+      border-radius: 10px; 
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.7); 
+      background-color: rgba(255, 255, 255, 0.1); 
+    }
+  </style>
+</head>
+<body>
+
+  <section class="special-offers">
+    <div class="container">
+      <div class="page-heading-container">
+        <img src="booking-logo.png" alt="Logo" class="logo"> 
+        <h1 class="page-heading">Available Booking</h1>
+      </div>
+
+      <div class="container border-container">
+        <h2 class="text-center mb-4 text-white">Booking Categories</h2> 
+        <div class="row">
+          <div class="col-md-6">
+            <div class="offer-box p-4">
+              <a href="form 1.html">
+                <h3>Booking Form</h3>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6 mb-5">
+            <div class="offer-box p-4">
+              <a href="states hotel.html">
+                <h3>Hotel Booking</h3>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="offer-box p-4">
+              <a href="flight-booking.html">
+                <h3>package Booking</h3>
+              </a>
+            </div> 
+          </div>
+          <div class="col-md-6">
+            <div class="offer-box p-4">
+              <a href="city-getaways.html">
+                <h3>Flight Getaways</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

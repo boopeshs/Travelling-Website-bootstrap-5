@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Booking</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Booking Form */
+    .booking-form {
+      background-color: #f8f9fa;
+      padding: 30px;
+      border-radius: 8px;
+    }
+
+    .booking-form input, .booking-form select {
+      margin-bottom: 15px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Booking Form Section -->
+  <section id="booking-form" class="container my-5">
+    <h2 id="booking-heading" class="text-center mb-4">Book Your Stay</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form class="booking-form">
+          <div class="form-group">
+            <label for="hotel-select">Select Hotel</label>
+            <select class="form-control" id="hotel-select" required>
+                <option value="">Choose...</option>
+                <option value="Sreeniketanam Lodge">Sreeniketanam Lodge</option>
+                <option value="The Park Visakhapatnam">The Park Visakhapatnam</option>
+                <option value="Grand Vijayawada">Grand Vijayawada</option>
+              </select>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="checkin-date">Check-In Date</label>
+                <input type="date" class="form-control" id="checkin-date" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="checkout-date">Check-Out Date</label>
+                <input type="date" class="form-control" id="checkout-date" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="guests">Number of Guests</label>
+            <input type="number" class="form-control" id="guests" placeholder="Number of guests" required>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" class="form-control" id="first-name" placeholder="Enter first name" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" class="form-control" id="last-name" placeholder="Enter last name" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Enter phone number" required>
+          </div>
+
+          <div class="form-group">
+            <label for="special-requests">Special Requests</label>
+            <textarea class="form-control" id="special-requests" rows="3" placeholder="Any special requests"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Confirm Booking</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript to Set Selected Hotel from Query String -->
+  <script>
+    // Function to get query parameter by name
+    function getQueryParam(param) {
+      let urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Set hotel name dynamically
+    let hotelName = getQueryParam('hotel');
+    if (hotelName) {
+      document.getElementById('hotel-select').value = hotelName;
+      document.getElementById('booking-heading').innerText = 'Book Now: ' + hotelName;
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

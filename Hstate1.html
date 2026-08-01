@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>State1</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* Hotel Cards */
+    .hotel-card {
+      border: 1px solid #ddd; /* Light gray border */
+      border-radius: 5px; /* Rounded corners */
+      padding: 15px; /* Padding inside the card */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hotel-card:hover {
+      
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.664); /* Subtle shadow on hover */
+    }
+
+    /* Hotel image */
+    .hotel-image {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    /* Custom Button Style */
+    .btn-view-more {
+      background-color: #007bff; /* Bootstrap primary color */
+      border-color: #007bff; /* Match border with background */
+    }
+
+    .btn-view-more a {
+      color: white; /* Ensure link text is white */
+      text-decoration: none; /* Remove underline from link */
+    }
+
+    .btn-view-more a:hover {
+      color: white; /* Ensure link text is white on hover */
+      text-decoration: none; /* Remove underline on hover */
+    }
+
+    .btn-view-more .fa-arrow-right {
+      margin-left: 10px; /* Space between text and arrow */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hotel Selection Section -->
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Best Hotels In Andhra Pradesh</h2>
+    
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="media hotel-card p-3">
+          <img src="s1-1.jpg" class="mr-3 hotel-image" alt="Sreeniketanam Lodge" style="width:300px;">
+          <div class="media-body">
+            <h5 class="mt-0">1. Sreeniketanam Lodge</h5>
+            <p>Located near the beach with stunning views and premium services.</p>
+            <p>Price: ₹5000 per night</p>
+            <p>Rating: ★★★★☆ (4.5/5)</p>
+            <button onclick="bookNow('Sreeniketanam Lodge')" class="btn btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="media hotel-card p-3">
+          <img src="s1-2.jpg" class="mr-3 hotel-image" alt="The Park Visakhapatnam" style="width:300px;">
+          <div class="media-body">
+            <h5 class="mt-0">2. The Park Visakhapatnam</h5>
+            <p>Enjoy the urban life with easy access to local attractions.</p>
+            <p>Price: ₹7000 per night</p>
+            <p>Rating: ★★★★☆ (4.6/5)</p>
+            <button onclick="bookNow('The Park Visakhapatnam')" class="btn btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="media hotel-card p-3">
+          <img src="s1-3.jpg" class="mr-3 hotel-image" alt="Grand Vijayawada" style="width:300px;">
+          <div class="media-body">
+            <h5 class="mt-0">3. Grand Vijayawada</h5>
+            <p>Experience a peaceful stay in the heart of the mountains.</p>
+            <p>Price: ₹4500 per night</p>
+            <p>Rating: ★★★★☆ (4.3/5)</p>
+            <button onclick="bookNow('Grand Vijayawada')" class="btn btn-primary">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View More Button -->
+    <div class="text-center my-4">
+      <button class="btn btn-view-more">
+        <a href="https://www.tripadvisor.in/Hotels-g297585-Andhra_Pradesh-Hotels.html">
+          View More
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- JavaScript to Redirect to Booking Page -->
+  <script>
+    function bookNow(hotelName) {
+      // Navigate to the booking form and pass the selected hotel in the URL
+      window.location.href = `Hbooking form.html?hotel=${encodeURIComponent(hotelName)}`;
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

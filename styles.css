@@ -1,0 +1,152 @@
+/* Custom styles */
+.hero {
+  background-image: url('back1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 100px 0;
+}
+
+th, td {
+  text-align: center;
+}
+
+h1 { 
+  color : teal;
+  font-weight: bold;
+}
+
+h4 { 
+  color : mediumaquamarine;
+  font-weight: bold;
+}
+
+h6 { 
+  color : darkcyan;
+  font-weight: bold;
+}
+
+
+.destinations1 {
+  padding: 1px 0;
+}
+
+
+.profile-area {
+  padding: 80px 0;
+}
+
+.card {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.img1 img {
+  height: 200px; 
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  width: 100%;
+  object-fit: cover; 
+}
+
+.img2 img {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  width: 150px; /* Adjusted width */
+  height: 150px; /* Adjusted height */
+  border-radius: 50%;
+  border: 5px solid #fff; /* Adjusted border width */
+  margin-top: -60px; /* Adjusted margin-top to center the image */
+}
+
+.card:hover .img2 img {
+  border-color: darkcyan;
+  transition: 0.7s;
+}
+
+.main-text {
+  padding: 30px 0;
+  text-align: center;
+}
+
+.main-text h2 {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 20px;
+  margin: 0 0 20px;
+}
+
+.main-text p {
+  font-size: 16px;
+  padding: 0 35px;
+}
+
+.btn {
+  margin-top: 3px;
+}
+
+/* Banner Start */
+.banner{
+  width: 100%;
+  height: 60vh;
+  background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url(adven-back1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.banner-content{
+  text-align: center;
+  padding: 150px 10% 10px;
+}
+.banner-content h5{
+  color: white;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-shadow: 0px 1px 1px black;
+}
+.banner-content h3{
+  color: #f3f3f3;
+  font-size: 38px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  text-shadow: 0px 1px 1px black;
+}
+.banner-content p{
+  color: white;
+  font-size: 16px;
+  margin-top: 5px;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-shadow: 0px 1px 1px black;
+}
+.banner-content button a{
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+.banner-content button{
+  width: 160px;
+  height: 36px;
+  margin-top: 10px;
+  background: transparent;
+  border: 3px solid white;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.banner-content button:hover{
+  background: #388b6f;
+  border: none;
+}
+/* Banner End */
+

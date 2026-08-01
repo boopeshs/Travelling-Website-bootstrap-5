@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel - Contact Us</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the contact form */
+        body {
+            background-image: url('contact-bg.jpg'); /* Replace with an actual image URL */
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 60px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            color: #000;
+        }
+
+        h1,
+        h2 {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-custom {
+            background-color: #388b6f;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: darkgreen;
+        }
+
+        /* Popup styling */
+        #popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            border-radius: 10px;
+            padding: 50px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(56, 139, 111, 0.9);
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        #popup.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #popup h2,
+        #popup h3 {
+            color: white;
+        }
+
+        #btn {
+            font-size: 20px;
+            background-color: #fff;
+            color: #388b6f;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.5s;
+        }
+
+        #btn:hover {
+            background-color: #388b6f;
+            color: white;
+        }
+
+        /* Styling for logo next to heading */
+        .logo {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .heading-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Heading with Logo -->
+    <div class="container py-5 text-center heading-wrapper heading-underline">
+        <img src="contact-logo.jpg" alt="Logo" class="logo"> <!-- Replace 'logo.png' with your logo image path -->
+        <h1 class="fw-bold shadow-heading">Contact Us</h1>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section container">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <h2 class="fw-bold mb-3 shadow-heading">Get In <span style="color: #388b6f;">Touch</span></h2>
+                <p><strong>For more information, fill out the form or contact us directly.</strong></p>
+                <ul class="list-unstyled mt-3">
+                    <li class="mb-2"><a href="tel:+91-72******37" class="text-decoration-none" style="color: #388b6f;"><strong>+91-72******37</strong></a></li>
+                    <li class="mb-2"><a href="mailto:dormabhu@gmail.com" class="text-decoration-none" style="color: #388b6f;"><strong>dormabhu@gmail.com</strong></a></li>
+                    <li><a href="#" class="text-decoration-none" style="color: #388b6f;"><strong>Visit our Indian Web Page</strong></a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <form id="contactForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <input type="text" id="fullName" class="form-control" placeholder="Full Name" required pattern="[A-Za-z\s]+" title="Name can only contain letters and spaces">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" id="email" class="form-control" placeholder="Email Address" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <input type="tel" id="phone" class="form-control" placeholder="Phone Number" required pattern="\d{10}" title="Phone number must be 10 digits">
+                        </div>
+                        <div class="col-md-6">
+                            <select id="destination" class="form-select" required>
+                                <option value="" disabled selected>Choose a destination</option>
+                                <option value="asia">Asia</option>
+                                <option value="europe">Europe</option>
+                                <option value="america">America</option>
+                                <option value="africa">Africa</option>
+                                <option value="australia">Australia</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <textarea id="message" class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-custom w-100">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popup Section -->
+    <div id="popup">
+        <center>
+            <h2>Your message has been sent!</h2>
+        </center>
+        <center>
+            <h3>***Thank You!***</h3>
+        </center>
+        <center>
+            <h3>Have a Great Day!</h3>
+        </center>
+        <center><a href="#" id="btn" onclick="hidePopup()">OK</a></center>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript functions -->
+    <script>
+        // Show popup when form is submitted
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            validateForm();
+        });
+
+        function validateForm() {
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const destination = document.getElementById('destination').value;
+            const message = document.getElementById('message').value;
+
+            if (!fullName || !email || !phone || !destination || !message) {
+                alert("All fields must be filled out.");
+                return false;
+            }
+
+            togglePopup();
+            return true;
+        }
+
+        function togglePopup() {
+            const popup = document.getElementById('popup');
+            popup.classList.add('active'); // Show the popup
+        }
+
+        function hidePopup() {
+            const popup = document.getElementById('popup');
+            popup.classList.remove('active'); // Hide the popup
+            location.reload(); // Refresh the page
+        }
+    </script>
+</body>
+
+</html>
